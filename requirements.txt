@@ -1,3 +1,3 @@
-# the modified cassandra python driver
+git+https://github.com/hemidactylus/python-driver@SL-zerobundle#egg=cassandra-driver
 fastapi==0.97.0
 uvicorn==0.22.0
