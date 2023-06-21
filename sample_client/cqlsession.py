@@ -26,11 +26,24 @@ def getCQLSession(mode='astra_db'):
         )
         astraSession = cluster.connect()
         return astraSession
-    elif mode == 'astra_zb':
+    elif mode == 'astra_zb_key':
         ASTRA_ZB_API_KEY = os.environ["ASTRA_ZB_API_KEY"]
         cluster = Cluster(
             cloud={
                 "zb_api_key": ASTRA_ZB_API_KEY,
+            },
+            auth_provider=PlainTextAuthProvider(
+                ASTRA_DB_CLIENT_ID,
+                ASTRA_DB_APPLICATION_TOKEN,
+            ),
+        )
+        astraSession = cluster.connect()
+        return astraSession
+    elif mode == 'astra_zb_string':
+        ASTRA_ZB_STRING = os.environ["ASTRA_ZB_STRING"]
+        cluster = Cluster(
+            cloud={
+                "zb_string": ASTRA_ZB_STRING,
             },
             auth_provider=PlainTextAuthProvider(
                 ASTRA_DB_CLIENT_ID,
